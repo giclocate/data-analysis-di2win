@@ -1,7 +1,7 @@
 # Data Analysis Di2win🤩🌟🩷
 
 ## 🌏 Visão geral do projeto
-Este projeto é realizado em parceria com a Empresa Di2win🩷, onde realizamos o tratamento e análise de dados. Através da base de dados enviada pela empresa realizamos um relatório de taxas.
+Este projeto é realizado em parceria com a empresa Di2win🩷, onde efetuamos o tratamento e a análise de dados. Com base nos dados fornecidos pela empresa, elaboramos um relatório detalhado sobre as taxas de documentos processados.
 
 ## 📍Stack utilizada
 
@@ -40,3 +40,6 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 
 - [@Marcellyz](https://github.com/Marcellyz) - Marcelly Eduarda Santos da Silva
 - [@giclocate](https://github.com/giclocate) - Giovanna Clócate
+
+## 🙏 Agradecimentos 
+Agradecemos profundamente à empresa Di2Win 🏢🩷 pela parceria e apoio, aos professores 🎓📚 pelo conhecimento compartilhado, à equipe 👥🤝 pelo trabalho dedicado, e a todos que, de alguma forma, contribuíram para a realização deste projeto. Cada um de vocês foi fundamental para o sucesso desta iniciativa 💖✨.
