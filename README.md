@@ -28,18 +28,22 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 
 - [x] gerar relatório de taxa de documentos processados
 - [x] dados de formatação exigida na documentação do projeto da residência
-
-🚧**Em construção**🚧
-- [ ] Saída realizada pelo Excel 
-- [ ] Utilizar cores para informar os dados corretos e incorretos e a porcentagem deles 
+- [X] Saída realizada pelo Excel 
+- [X] Historigrama dos dados corretos e incorretos por tipo de documentos
+- [X] Formatação em cores
+- [X] Gráficos de pizza de porcentagem de cada documentos
+- [X] Inserção das tabelas no documento Excel
  
 ## 💡Diferenciais
-- [ ] gerar gráficos em PowerBi
+- [X] gerar gráficos em PowerBi
+- [ ] Criar o Streamlit  **🚧Em Construção**
 
 ## 👥 Grupo
 
 - [@Marcellyz](https://github.com/Marcellyz) - Marcelly Eduarda Santos da Silva
 - [@giclocate](https://github.com/giclocate) - Giovanna Clócate
+- [@katiarochaalmeida](https://github.com/katiarochaalmeida) - Katia Rocha
+- [@HelengAraujo](https://github.com/HelengAraujo) - Helen Gabriely Araujo
 
 ## 🙏 Agradecimentos 
 Agradecemos profundamente à empresa Di2Win 🏢🩷 pela parceria e apoio, aos professores 🎓📚 pelo conhecimento compartilhado, à equipe 👥🤝 pelo trabalho dedicado, e a todos que, de alguma forma, contribuíram para a realização deste projeto. Cada um de vocês foi fundamental para o sucesso desta iniciativa 💖✨.
