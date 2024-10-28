@@ -41,9 +41,10 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 ## 👥 Grupo
 
 - [@Marcellyz](https://github.com/Marcellyz) - Marcelly Eduarda Santos da Silva
-- [@giclocate](https://github.com/giclocate) - Giovanna Clócate
-- [@katiarochaalmeida](https://github.com/katiarochaalmeida) - Katia Rocha
-- [@HelengAraujo](https://github.com/HelengAraujo) - Helen Gabriely Araujo
+- [@giclocate](https://github.com/giclocate) - Giovanna Clócate Cavalcante de Almeida
+- [@katiarochaalmeida](https://github.com/katiarochaalmeida) - Katia Rocha de Almeida
+- [@HelengAraujo](https://github.com/HelengAraujo) - Helen Gabriely Lima de Araujo
+- [@rubyzim](https://github.com/rubyzim) - Higor Gomes Ramos da Silva
 
 ## 🙏 Agradecimentos 
 Agradecemos profundamente à empresa Di2Win 🏢🩷 pela parceria e apoio, aos professores 🎓📚 pelo conhecimento compartilhado, à equipe 👥🤝 pelo trabalho dedicado, e a todos que, de alguma forma, contribuíram para a realização deste projeto. Cada um de vocês foi fundamental para o sucesso desta iniciativa 💖✨.
