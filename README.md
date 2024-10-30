@@ -26,10 +26,10 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
   
 ## 🧾 Funcionalidades 
 
-- [x] gerar relatório de taxa de documentos processados
-- [x] dados de formatação exigida na documentação do projeto da residência
+- [x] Gerar relatório de taxa de documentos processados
+- [x] Dados de formatação exigida na documentação do projeto da residência
 - [X] Saída realizada pelo Excel 
-- [X] Historigrama dos dados corretos e incorretos por tipo de documentos
+- [X] Histograma dos dados corretos e incorretos por tipo de documentos
 - [X] Formatação em cores
 - [X] Gráficos de pizza de porcentagem de cada documentos
 - [X] Inserção das tabelas no documento Excel
