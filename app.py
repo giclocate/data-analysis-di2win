@@ -4,14 +4,15 @@ import streamlit as st
 import os
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
-
+from io import BytesIO
+from openpyxl.styles import PatternFill, Font
+from openpyxl import Workbook
+from openpyxl.drawing.image import Image
 
 # Configurando a página
 st.set_page_config(page_title="ExtrAIdados Dashboard",
                    page_icon=":bar_chart:",
-                   layout="wide"
-    
-)
+                   layout="wide")
 
 def get_db_engine():
     dotenv_path = r'C:/Users/giova/Desktop/Projeto Di2win/.env'
@@ -58,17 +59,12 @@ df_selection = df.query(
     f"type_document in {tipo_doc} and edit in {corretude} and is_null in {total_null}"
 )
 
-
 # ---- MAINPAGE ----#
 st.title(":bar_chart: Di2win Dashboard")
 st.markdown("Este é um dashboard interativo para análise de documentos do banco ExtrAIdados.")
 
-
-
 # TOP KPI'S
 total_extractions = df.shape[0]
-
-# Calcule a média da porcentagem de campos corretos por documento
 average_correct = round((df['edit'] == False).mean() * 100, 1)  
 average_incorrect = 100 - average_correct
 
@@ -107,9 +103,6 @@ fig_document_sales = px.bar(
     template="plotly_white"
 )
 
-# Exibir o gráfico no Streamlit
-st.plotly_chart(fig_document_sales)
-
 
 # Contagem de campos corretos e incorretos
 field_counts = df_selection['edit'].value_counts().reset_index()
@@ -126,26 +119,107 @@ fig_donut = px.pie(
     color_discrete_sequence=["#f94dac", "#dbdbdb"]
 )
 
-# Exibir o gráfico no Streamlit
-st.plotly_chart(fig_donut)
+
+left_column, right_column = st.columns(2)
+left_column.plotly_chart(fig_document_sales, use_container_width=True)
+right_column.plotly_chart(fig_donut, use_container_width=True)
+
+
+# Seletor para escolher o tipo de documento para análise
+documento_especifico = st.selectbox(
+    "Qual documento você gostaria de analisar?",
+    options=df_selection['type_document'].unique()
+)
 
 # Agrupar dados por tipo de documento e se o campo é correto ou incorreto
 document_edit_counts = df_selection.groupby(['type_document', 'edit']).size().reset_index(name='count')
 document_edit_counts['label'] = document_edit_counts['edit'].apply(lambda x: "Corretos" if not x else "Incorretos")
 
-# Iterar sobre cada tipo de documento e gerar um gráfico de pizza
-for document_type in document_edit_counts['type_document'].unique():
-    doc_data = document_edit_counts[document_edit_counts['type_document'] == document_type]
+# Filtrar os dados para o documento específico selecionado
+doc_specific_data = document_edit_counts[document_edit_counts['type_document'] == documento_especifico]
 
-    # Criar o gráfico de pizza
-    fig_pie = px.pie(
-        doc_data,
-        values='count',
-        names='label',
-        title=f"<b>Distribuição de Campos Corretos e Incorretos - {document_type}</b>",
-        color_discrete_sequence=["#f94dac", "#dbdbdb"]
+# Criar o gráfico de pizza para o documento específico
+fig_pie = px.pie(
+    doc_specific_data,
+    values='count',
+    names='label',
+    title=f"<b>Distribuição de Campos Corretos e Incorretos - {documento_especifico}</b>",
+    color_discrete_sequence=["#f94dac", "#dbdbdb"]
+)
+fig_pie.update_traces(textinfo="percent+label")
+
+# Exibir o gráfico no Streamlit
+st.plotly_chart(fig_pie)
+
+def generate_styled_excel(df):
+    # Se precisar remover uma coluna, faça isso aqui
+    df = df.drop(columns=['id'])  # ajuste o nome da coluna conforme necessário
+
+    # Renomear colunas (ajuste a lista conforme o número de colunas que você realmente tem)
+    df.columns = [
+        'Tipo do documento',
+        'Nome do documento',
+        'Nome do campo',
+        'Valor inicial',
+        'Valor final',
+        'Campo alterado',
+        'Campo vazio'
+    ]
+
+    # Adicionar coluna 'Resultado'
+    df['Resultado'] = df['Campo alterado'].apply(lambda x: 'Correto' if not x else 'Incorreto')
+
+    # Adicionar coluna 'Porcentagem' com a porcentagem de campos corretos/incorretos por documento
+    correct_percentage = (
+        df.groupby('Tipo do documento')['Resultado']
+        .apply(lambda x: round((x == 'Correto').mean() * 100, 2))
+        .rename('Porcentagem')
     )
-    fig_pie.update_traces(textinfo="percent+label")
-    
-    # Exibir o gráfico no Streamlit
-    st.plotly_chart(fig_pie)
+    df = df.merge(correct_percentage, on='Tipo do documento', how='left')
+
+    # Estilização das células
+    def styling(row):
+        result_color = 'background-color: #BDF5BD' if row['Resultado'] == 'Correto' else 'background-color: #FF7979'
+        return [result_color if col == 'Resultado' else '' for col in df.columns]
+
+    # Aplicar estilização apenas na coluna 'Resultado'
+    styled_df = df.style.apply(styling, axis=1)
+
+    # Gerar Excel
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine="openpyxl") as writer:
+        styled_df.to_excel(writer, sheet_name="Dados", index=False, startrow=1)
+
+        workbook = writer.book
+        worksheet = writer.sheets['Dados']
+
+        # Adicionar a célula de título estilizada
+        header_cell = worksheet["A1"]
+        header_cell.value = "Tabela de documentos"
+        header_cell.font = Font(color="FFFFFF", bold=True, size=14)  # Fonte branca, negrito e tamanho maior
+        header_cell.fill = PatternFill(start_color="FF69B4", end_color="FF69B4", fill_type="solid")  # Fundo rosa
+
+        # Ajustar a largura da coluna se necessário
+        worksheet.column_dimensions['A'].width = 20
+
+    output.seek(0)
+    return output
+
+if st.button("Gerar Excel"):
+    excel_file = generate_styled_excel(df)
+    st.download_button(
+        label="Download Excel",
+        data=excel_file,
+        file_name="relatorio.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
+# ---- HIDE STREAMLIT STYLE ----
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
