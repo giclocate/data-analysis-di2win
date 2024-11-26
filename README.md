@@ -43,6 +43,21 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 - [X] Isolamento e escalabilidade com Docker
 - [ ] Deploy integrado no Back4App **🚧Em Construção**
 
+## 📂 Estrutura do Projeto
+
+```
+├── /data                
+├── /src                  
+│   ├── app.py            
+│   ├── analysis.py      
+│   ├── database.py       
+├── /assets              
+├── Dockerfile         
+├── requirements.txt      
+├── README.md            
+└── ...
+````
+
 ## 🏛️ Arquitetura do projeto
 ```mermaid
 graph TD
@@ -62,6 +77,18 @@ graph TD
     end
 
 ````
+
+## 🔮 Futuras Melhorias
+
+| **Área**             | **Descrição**                                                                 |
+|----------------------|------------------------------------------------------------------------------|
+| **🔗 Integrações**   | Acesso a APIs externas para coleta de dados em tempo real.                   |
+| **🚀 Escalabilidade**| Suporte a outras plataformas de nuvem como AWS e Azure.                     |
+| **📊 Visualização**  | Gráficos interativos no Streamlit com filtros dinâmicos.                     |
+| **📊 Relatórios**    | Relatórios personalizados com seleção de dados e formatação.                 |
+| **🔒 Segurança**     | Autenticação via OAuth2/SSO e logs de auditoria para rastreabilidade.         |
+| **📂 Estrutura de Dados** | Otimização de queries e índices no PostgreSQL; suporte a MySQL e MongoDB. |
+
 
 ## 👥 Grupo
 
