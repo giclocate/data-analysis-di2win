@@ -10,7 +10,9 @@ Este projeto é realizado em parceria com a empresa Di2win🩷, onde efetuamos o
   <img align="inline_block" alt="pandas" src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white"/>
   <img align="inline_block" alt="PostegresSQL" src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/>
   <img align="inline_block" alt="jupyter Notebook" src="https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white"/>
-  <img align="inline_block" alt="jupyter Notebook" src="https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black"/> 
+  <img align="inline_block" alt="PowerBi" src="https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black"/> 
+  <img align="inline_block" alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"/> 
+  <img align="inline_block" alt="Docker" src="https://img.shields.io/badge/Streamlit-%23FE4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white"/> 
 </div>
 
 ## 📋Pré-requisitos
@@ -23,6 +25,7 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 - Pandas
 - SQLAlchemy 
 - psycopg2
+- Streamlit
   
 ## 🧾 Funcionalidades 
 
@@ -36,7 +39,29 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
  
 ## 💡Diferenciais
 - [X] gerar gráficos em PowerBi
-- [ ] Criar o Streamlit  **🚧Em Construção**
+- [X] Criar o Streamlit
+- [X] Isolamento e escalabilidade com Docker
+- [ ] Deploy integrado no Back4App **🚧Em Construção**
+
+## 🏛️ Arquitetura do projeto
+```mermaid
+graph TD
+    Cliente[Cliente] --> ExtraiDados[Extrai Dados]
+    ExtraiDados --> Login[Login]
+    Login --> Streamlit[Streamlit]
+    Streamlit --> TratamentoDados[Tratamento dos Dados]
+    TratamentoDados --> Excel[Extração do Excel]
+    TratamentoDados --> Graficos[Geração de Gráficos]
+    Graficos --> PowerBI[PowerBI]
+
+    subgraph Infraestrutura
+        Streamlit -->|Conexão| PostgreSQL[(PostgreSQL)]
+        PostgreSQL --> Jupyter[Jupyter Notebook]
+        Streamlit --> Docker(Docker)
+       Streamlit --> Kubernetes[Kubernetes]
+    end
+
+````
 
 ## 👥 Grupo
 
