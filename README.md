@@ -41,21 +41,21 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu ambiente:
 - [X] gerar gráficos em PowerBi
 - [X] Criar o Streamlit
 - [X] Isolamento e escalabilidade com Docker
-- [ ] Deploy integrado no Back4App **🚧Em Construção**
 
 ## 📂 Estrutura do Projeto
 
 ```
-├── /data                
-├── /src                  
-│   ├── app.py            
-│   ├── analysis.py      
-│   ├── database.py       
-├── /assets              
-├── Dockerfile         
-├── requirements.txt      
-├── README.md            
-└── ...
+├── /img               
+├── .env                
+├──.gitignore
+├── Di2win PB.pbix   
+├── Dockerfile       
+├── README.md             
+├── app.py       
+├── docker-compose.yml    
+├── embarque_2024.sql
+├── main.ipynb           
+└── requirements.txt
 ````
 
 ## 🏛️ Arquitetura do projeto
@@ -84,10 +84,10 @@ graph TD
 |----------------------|------------------------------------------------------------------------------|
 | **🔗 Integrações**   | Acesso a APIs externas para coleta de dados em tempo real.                   |
 | **🚀 Escalabilidade**| Suporte a outras plataformas de nuvem como AWS e Azure.                     |
-| **📊 Visualização**  | Gráficos interativos no Streamlit com filtros dinâmicos.                     |
-| **📊 Relatórios**    | Relatórios personalizados com seleção de dados e formatação.                 |
+| **📊 Visualização**  | Permitir que os usuários criem dashboards personalizados com widgets para diferentes tipos de visualizações e dados.                     |
+| **📊 Relatórios**    | Capacidade de exportar relatórios para formatos como PDF, Excel, CSV e PowerPoint para facilitar o compartilhamento e a apresentação.                |
 | **🔒 Segurança**     | Autenticação via OAuth2/SSO e logs de auditoria para rastreabilidade.         |
-| **📂 Estrutura de Dados** | Otimização de queries e índices no PostgreSQL; suporte a MySQL e MongoDB. |
+| **📂 Estrutura de Dados** | Otimização de queries e índices no PostgreSQL, suporte a MySQL e MongoDB. |
 
 
 ## 👥 Grupo
